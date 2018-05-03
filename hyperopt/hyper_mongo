@@ -1,0 +1,8 @@
+
+(cd bin && { for F in ../mongodb-osx-x86_64-3.6.3/bin/* ; do echo "linking $F" ; ln -s $F ; done } )
+mongod --dbpath . --port 1234
+
+
+ln -s /Users/finup/Documents/Finup/Finup_lgb/hyperopt/optimizer.py /Users/finup/anaconda3/bin/
+
+hyperopt-mongo-worker --mongo=localhost:1234/foo_db --poll-interval=0.1

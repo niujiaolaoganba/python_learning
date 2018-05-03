@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_3" version="4.3">
+	<Header>
+		<Application name="JPMML-SkLearn" version="1.4.1"/>
+		<Timestamp>2017-12-26T11:49:09Z</Timestamp>
+	</Header>
+	<DataDictionary>
+		<DataField name="y" optype="categorical" dataType="integer">
+			<Value value="0"/>
+			<Value value="1"/>
+			<Value value="2"/>
+		</DataField>
+		<DataField name="sepal length (cm)" optype="continuous" dataType="double">
+			<Interval closure="closedClosed" leftMargin="4.3" rightMargin="7.9"/>
+		</DataField>
+		<DataField name="sepal width (cm)" optype="continuous" dataType="double">
+			<Interval closure="closedClosed" leftMargin="2.0" rightMargin="4.4"/>
+		</DataField>
+		<DataField name="petal length (cm)" optype="continuous" dataType="double">
+			<Interval closure="closedClosed" leftMargin="1.0" rightMargin="6.9"/>
+		</DataField>
+		<DataField name="petal width (cm)" optype="continuous" dataType="double">
+			<Interval closure="closedClosed" leftMargin="0.1" rightMargin="2.5"/>
+		</DataField>
+	</DataDictionary>
+	<TransformationDictionary>
+		<DerivedField name="pca@1[0]" optype="continuous" dataType="double">
+			<Apply function="sum">
+				<Apply function="*">
+					<Apply function="-">
+						<FieldRef field="sepal length (cm)"/>
+						<Constant dataType="double">5.843333333333335</Constant>
+					</Apply>
+					<Constant dataType="double">0.3615896773814495</Constant>
+				</Apply>
+				<Apply function="*">
+					<Apply function="-">
+						<FieldRef field="sepal width (cm)"/>
+						<Constant dataType="double">3.0540000000000007</Constant>
+					</Apply>
+					<Constant dataType="double">-0.08226888989221401</Constant>
+				</Apply>
+				<Apply function="*">
+					<Apply function="-">
+						<FieldRef field="petal length (cm)"/>
+						<Constant dataType="double">3.7586666666666693</Constant>
+					</Apply>
+					<Constant dataType="double">0.8565721052905279</Constant>
+				</Apply>
+				<Apply function="*">
+					<Apply function="-">
+						<FieldRef field="petal width (cm)"/>
+						<Constant dataType="double">1.1986666666666672</Constant>
+					</Apply>
+					<Constant dataType="double">0.3588439262482154</Constant>
+				</Apply>
+			</Apply>
+		</DerivedField>
+		<DerivedField name="pca@1[1]" optype="continuous" dataType="double">
+			<Apply function="sum">
+				<Apply function="*">
+					<Apply function="-">
+						<FieldRef field="sepal length (cm)"/>
+						<Constant dataType="double">5.843333333333335</Constant>
+					</Apply>
+					<Constant dataType="double">0.6565398832858315</Constant>
+				</Apply>
+				<Apply function="*">
+					<Apply function="-">
+						<FieldRef field="sepal width (cm)"/>
+						<Constant dataType="double">3.0540000000000007</Constant>
+					</Apply>
+					<Constant dataType="double">0.7297123713264962</Constant>
+				</Apply>
+				<Apply function="*">
+					<Apply function="-">
+						<FieldRef field="petal length (cm)"/>
+						<Constant dataType="double">3.7586666666666693</Constant>
+					</Apply>
+					<Constant dataType="double">-0.17576740342865413</Constant>
+				</Apply>
+				<Apply function="*">
+					<Apply function="-">
+						<FieldRef field="petal width (cm)"/>
+						<Constant dataType="double">1.1986666666666672</Constant>
+					</Apply>
+					<Constant dataType="double">-0.07470647013503319</Constant>
+				</Apply>
+			</Apply>
+		</DerivedField>
+	</TransformationDictionary>
+	<RegressionModel functionName="classification" normalizationMethod="logit">
+		<MiningSchema>
+			<MiningField name="y" usageType="target"/>
+			<MiningField name="sepal length (cm)" missingValueReplacement="5.843333333333335" missingValueTreatment="asMean"/>
+			<MiningField name="sepal width (cm)" missingValueReplacement="3.0540000000000007" missingValueTreatment="asMean"/>
+			<MiningField name="petal length (cm)" missingValueReplacement="3.7586666666666693" missingValueTreatment="asMean"/>
+			<MiningField name="petal width (cm)" missingValueReplacement="1.1986666666666672" missingValueTreatment="asMean"/>
+		</MiningSchema>
+		<Output>
+			<OutputField name="probability(0)" optype="continuous" dataType="double" feature="probability" value="0"/>
+			<OutputField name="probability(1)" optype="continuous" dataType="double" feature="probability" value="1"/>
+			<OutputField name="probability(2)" optype="continuous" dataType="double" feature="probability" value="2"/>
+		</Output>
+		<ModelStats>
+			<UnivariateStats field="sepal length (cm)">
+				<Counts totalFreq="150.0" missingFreq="0.0" invalidFreq="0.0"/>
+				<NumericInfo minimum="4.3" maximum="7.9" mean="5.843333333333335" standardDeviation="0.8253012917851409" median="5.8" interQuartileRange="1.3000000000000007"/>
+			</UnivariateStats>
+			<UnivariateStats field="sepal width (cm)">
+				<Counts totalFreq="150.0" missingFreq="0.0" invalidFreq="0.0"/>
+				<NumericInfo minimum="2.0" maximum="4.4" mean="3.0540000000000007" standardDeviation="0.4321465800705435" median="3.0" interQuartileRange="0.5"/>
+			</UnivariateStats>
+			<UnivariateStats field="petal length (cm)">
+				<Counts totalFreq="150.0" missingFreq="0.0" invalidFreq="0.0"/>
+				<NumericInfo minimum="1.0" maximum="6.9" mean="3.7586666666666693" standardDeviation="1.7585291834055201" median="4.35" interQuartileRange="3.4999999999999996"/>
+			</UnivariateStats>
+			<UnivariateStats field="petal width (cm)">
+				<Counts totalFreq="150.0" missingFreq="0.0" invalidFreq="0.0"/>
+				<NumericInfo minimum="0.1" maximum="2.5" mean="1.1986666666666672" standardDeviation="0.760612618588172" median="1.3" interQuartileRange="1.5"/>
+			</UnivariateStats>
+		</ModelStats>
+		<RegressionTable intercept="-1.8604897496335058" targetCategory="0">
+			<NumericPredictor name="pca@1[0]" coefficient="-2.222878585154682"/>
+			<NumericPredictor name="pca@1[1]" coefficient="1.2729473311510862"/>
+		</RegressionTable>
+		<RegressionTable intercept="-0.8060244096350657" targetCategory="1">
+			<NumericPredictor name="pca@1[0]" coefficient="0.24201612215143575"/>
+			<NumericPredictor name="pca@1[1]" coefficient="-1.5921152338820281"/>
+		</RegressionTable>
+		<RegressionTable intercept="-3.113058850242666" targetCategory="2">
+			<NumericPredictor name="pca@1[0]" coefficient="2.5067169552862474"/>
+			<NumericPredictor name="pca@1[1]" coefficient="-0.989379120816793"/>
+		</RegressionTable>
+	</RegressionModel>
+</PMML>
